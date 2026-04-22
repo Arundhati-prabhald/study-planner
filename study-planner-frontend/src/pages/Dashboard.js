@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
+import PageWrapper from "../components/PageWrapper";
 
 function Dashboard() {
   const [subjects, setSubjects] = useState([]);
@@ -85,9 +86,9 @@ function Dashboard() {
 
 
   return (
-    <div className="container">
-      <h2>Welcome to Your Study Dashboard</h2>
-
+    <PageWrapper>
+      <div className="container">
+        <h2>📚 Study Planner Dashboard</h2>
       <h3>Add a Subject</h3>
       <input
         placeholder="Subject Name"
@@ -141,8 +142,10 @@ function Dashboard() {
       )}
 
       <button onClick={handleProceed} style={{marginTop: '20px'}}>Proceed to Plan Settings</button>
-    </div>
+        </div>
+    </PageWrapper>
   );
 }
 
 export default Dashboard;
+

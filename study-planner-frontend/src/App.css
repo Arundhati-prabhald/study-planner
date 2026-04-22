@@ -1,26 +1,90 @@
 /* App.css */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  color: #333;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.header-links a, .header-links button {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header-links a:hover, .header-links button:hover {
+  text-decoration: underline;
 }
 
 .container {
-  background: white;
+  background: rgba(255, 255, 255, 0.85);
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  width: 100%;
-  max-width: 600px;
-  margin: 50px auto;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 700px;
+  margin: 100px auto 40px; /* push below header */
   text-align: center;
+}
+
+/* Auth container for login/register pages - narrower and more transparent */
+.auth-container {
+  background: rgba(255, 255, 255, 0.72);
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 380px;
+  margin: 110px auto 40px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* full height wrapper for page backgrounds */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h2 {
   color: #333;
   margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+h3 {
+  color: #333;
+  margin: 20px 0 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+p {
+  color: #666;
+  line-height: 1.5;
 }
 
 input, select, button {
@@ -53,6 +117,57 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Page backgrounds are now applied via inline styles in components to avoid webpack loader errors */
+
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  margin: 20px 0;
+  text-align: left;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background-color: #fafbff;
+}
+
+button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease, transform 0.2s;
+  font-weight: 600;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
 /* Dashboard specific */
 .subject-list {
   list-style: none;
@@ -60,19 +175,20 @@ a:hover {
 }
 
 .subject-item {
-  background: #f9f9f9;
-  padding: 15px;
+  background: rgba(255,255,255,0.95);
+  padding: 18px;
   margin: 10px 0;
-  border-radius: 5px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .plan-display {
-  background: #e8f5e8;
-  padding: 20px;
-  border-radius: 10px;
+  background: rgba(240, 248, 255, 0.9);
+  padding: 24px;
+  border-radius: 12px;
   margin-top: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }

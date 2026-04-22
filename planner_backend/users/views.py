@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Subject, StudyPlan
-from datetime import date
+from datetime import date, time
 import json
 
 @api_view(['POST'])
@@ -67,6 +67,11 @@ def generate_plan(request):
     daily_hours = float(data['daily_study_hours'])
     study_style = data['study_style']
     max_focus_time = float(data['max_focus_time'])
+    study_start_time = data.get('study_start_time', '09:00')
+
+    # Parse start time
+    start_hour, start_minute = map(int, study_start_time.split(':'))
+    start_time_decimal = start_hour + start_minute / 60.0
 
     subjects = Subject.objects.filter(user=user)
     if not subjects:
@@ -121,8 +126,8 @@ def generate_plan(request):
                     })
                     sw['allocated_time'] -= alloc
 
-    # Simple scheduling: assume start at 9 AM, add breaks
-    current_time = 9.0  # 9:00 AM
+    # Simple scheduling: start at user-specified time, add breaks
+    current_time = start_time_decimal
     scheduled_plan = []
     for session in plan:
         start_hour = int(current_time)
@@ -142,6 +147,7 @@ def generate_plan(request):
         daily_study_hours=daily_hours,
         study_style=study_style,
         max_focus_time=max_focus_time,
+        study_start_time=time(start_hour, start_minute),
         plan_data=scheduled_plan
     )
 

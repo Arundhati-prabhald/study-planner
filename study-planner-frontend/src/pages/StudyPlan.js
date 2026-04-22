@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
+import PageWrapper from "../components/PageWrapper";
 
 function StudyPlan() {
   const [plan, setPlan] = useState([]);
@@ -12,8 +13,9 @@ function StudyPlan() {
   }, []);
 
   return (
-    <div className="container">
-      <h2>Your Personalized Study Plan</h2>
+    <PageWrapper>
+      <div className="container">
+        <h2>Your Personalized Study Plan</h2>
       {plan.length > 0 ? (
         <div className="plan-display">
           <ul className="subject-list">
@@ -27,7 +29,8 @@ function StudyPlan() {
       ) : (
         <p>No plan generated yet.</p>
       )}
-    </div>
+      </div>
+    </PageWrapper>
   );
 }
 

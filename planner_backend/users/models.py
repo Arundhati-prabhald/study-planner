@@ -19,5 +19,6 @@ class StudyPlan(models.Model):
     daily_study_hours = models.FloatField()
     study_style = models.CharField(max_length=20, choices=[('continuous', 'Continuous'), ('mixed', 'Mixed')])
     max_focus_time = models.FloatField()  # in hours
+    study_start_time = models.TimeField(default='09:00:00')  # Store the start time
     created_at = models.DateTimeField(default=timezone.now)
     plan_data = models.JSONField()  # Store the generated plan as JSON

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../App.css";
+import PageWrapper from "../components/PageWrapper";
 
 function PlanSettings() {
   const [planSettings, setPlanSettings] = useState({
     daily_study_hours: '',
     study_style: 'mixed',
-    max_focus_time: ''
+    max_focus_time: '',
+    study_start_time: '09:00'
   });
   const [studyPlan, setStudyPlan] = useState(null);
 
@@ -25,8 +27,9 @@ function PlanSettings() {
   };
 
   return (
-    <div className="container">
-      <h2>Set Your Study Preferences</h2>
+    <PageWrapper>
+      <div className="container">
+        <h2>Set Your Study Preferences</h2>
       <input
         placeholder="Daily Study Hours"
         type="number"
@@ -50,6 +53,13 @@ function PlanSettings() {
         onChange={(e) => setPlanSettings({...planSettings, max_focus_time: e.target.value})}
         required
       />
+      <input
+        placeholder="Study Start Time (HH:MM)"
+        type="time"
+        value={planSettings.study_start_time}
+        onChange={(e) => setPlanSettings({...planSettings, study_start_time: e.target.value})}
+        required
+      />
       <button onClick={handleGeneratePlan}>Generate My Study Plan</button>
 
       {studyPlan && (
@@ -64,7 +74,8 @@ function PlanSettings() {
           </ul>
         </div>
       )}
-    </div>
+      </div>
+    </PageWrapper>
   );
 }
 
